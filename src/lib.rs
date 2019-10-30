@@ -16,8 +16,7 @@ fn read_secret(client: Client, mut url: Url, token: &str, secret_path: &str) -> 
     let request: RequestBuilder = client.get(url).header("X-Vault-Token", token);
     let resp: String = request.send().unwrap().json().unwrap();
 
-    let a: VaultSecret<String> = serde_json::from_str(&resp).unwrap();
-    a
+    serde_json::from_str(&resp).unwrap()
 }
 
 #[cfg(test)]
